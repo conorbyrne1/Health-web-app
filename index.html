@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.8.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2025.8.1/core.js"></script>
+</head>
+<body>
+
+    <py-config>
+        packages = ["pandas", "matplotlib", "numpy"]
+        [[fetch]]
+        files = ["heart_disease_data_clean.csv"]
+    </py-config>
+    <py-script src="data_vis.py" />
+
+</body>
+</html>
