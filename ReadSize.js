@@ -38,32 +38,32 @@ window.addEventListener('load', function(){
     },
         complete: function() {
         document.getElementById("csvSize").innerHTML
-            = `1. Total cases: ${totalCount - 1}`;
+            = `<b>Total Case</b>\n${totalCount - 1}`;
         document.getElementById("attack").innerHTML
-            = `2. Those who had Heart Attacks/Disease: ${attackCount} 
+            = `<b>Those who had Heart Attacks/Disease</b>\n${attackCount} 
             (${Math.trunc((attackCount / totalCount * 100) * 100) / 100}%)`;
         document.getElementById("noAttack").innerHTML
-            = `3. Those who did not have Heart Attacks/Disease: ${totalCount - attackCount} 
+            = `<b>Those who did not have Heart Attacks/Disease</b>\n${totalCount - attackCount} 
             (${Math.trunc(((totalCount - attackCount) / totalCount * 100) * 100) / 100}%)`;
         document.getElementById("genderSplit").innerHTML
-            = `4. Male | Female Counts: ${maleCount} | ${totalCount - maleCount}`;
+            = `<b>Male | Female Counts</b>\n${maleCount} | ${totalCount - maleCount}`;
         document.getElementById("collegeCount").innerHTML
-            = `5. Percentage of people who had 4 or more years of college: 
+            = `<b>Percentage of people who had 4 or more years of college</b>\n
             ${Math.trunc((collegeCount / totalCount * 100) * 100) / 100}% (${collegeCount})`;
         document.getElementById("active").innerHTML
-            = `6. Percentage of people who have physical activity in their day-to-day life:
+            = `<b>Percentage of people who have physical activity in their day-to-day life</b>\n
             ${Math.trunc((activeCount / totalCount * 100) * 100) / 100}% (${activeCount})`;
         document.getElementById("lowerIncome").innerHTML
-            = `7. Percentage of people who have a lower income:
+            = `<b>Percentage of people who have a lower income</b>\n
             ${Math.trunc((lowIncome / totalCount * 100) * 100) / 100}% (${lowIncome} people)`;
         document.getElementById("higherIncome").innerHTML
-            = `8. Percentage of people who have a higher income:
+            = `<b>Percentage of people who have a higher income</b>\n
             ${Math.trunc(((totalCount - lowIncome) / totalCount * 100) * 100) / 100}% (${totalCount - lowIncome} people)`;
         document.getElementById("cholesterol").innerHTML
-            = `9. Percentage of people who have High Cholesterol:
+            = `<b>Percentage of people who have High Cholesterol</b>\n
             ${Math.trunc(((highCholesterolCount) / totalCount * 100) * 100) / 100}% (${highCholesterolCount} people)`;
         document.getElementById("bloodPressure").innerHTML
-            = `10. Percentage of people who have High Blood Pressure:
+            = `<b>Percentage of people who have High Blood Pressure</b>\n
             ${Math.trunc(((highBpCount) / totalCount * 100) * 100) / 100}% (${highBpCount} people)`;
 
     }
