@@ -62,8 +62,45 @@ x_axis = np.arange(len(age_strings))
 plt.figure(figsize=(8,6))
 plt.bar(age_strings, age_list)
 add_labels(x_axis, age_list)
-plt.xlabel("Amount of heart disease/attacks for each age")
+plt.xlabel("Amount of heart disease/attacks for each age category")
 #plt.show()
+
+
+d = {'Age': data['Age'], 'Income': data['Income']}
+age_income = pd.DataFrame(d)
+
+age_income_list = []
+for age in unique_age:
+    avg_income = age_income.loc[age_income['Age'] == age, 'Income'].mean()
+    age_income_list.append(avg_income)
+    print('average income for the people in age',age,'category:',avg_income)
+
+plt.plot(unique_age, age_income_list)
+plt.xlabel('Age Group')
+plt.xticks(unique_age)
+plt.ylabel('Income Group')
+plt.ylim(0,10)
+plt.title('Age & Income')
+plt.grid(True)
+
+
+genderdf = {'HeartDiseaseorAttack': data['HeartDiseaseorAttack'], 'Gender': data['Sex']}
+gender_attack = pd.DataFrame(genderdf)
+
+male_no_attack = data.loc[(data['HeartDiseaseorAttack'] == 0) & (data['Sex'] == 1),['HeartDiseaseorAttack','Sex']]
+male_attack = data.loc[(data['HeartDiseaseorAttack'] == 1) & (data['Sex'] == 1),['HeartDiseaseorAttack','Sex']]
+female_no_attack = data.loc[(data['HeartDiseaseorAttack'] == 0) & (data['Sex'] == 0),['HeartDiseaseorAttack','Sex']]
+female_attack = data.loc[(data['HeartDiseaseorAttack'] == 1) & (data['Sex'] == 0),['HeartDiseaseorAttack','Sex']]
+
+
+plt.figure(figsize=(10,6))
+labels = ['Males without heart issues', 'Males with heart issues', 'Females without heart issues', 'Females with heart issues']
+colors = ['lightblue', 'steelblue', 'tomato', 'indianred']
+pie_data =[len(male_no_attack), len(male_attack), len(female_no_attack), len(female_attack)]
+plt.pie(pie_data, autopct=lambda pct: func(pct, pie_data), colors=colors)
+plt.legend(labels, loc="best")
+plt.xlabel("Heart issues by Gender")
+
 
 # only needs 1 or else there will be duplicate figures
 plt.show()
