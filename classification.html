@@ -112,10 +112,10 @@
         .metadata-wrapper:nth-child(3) { grid-column: 1; grid-row: 3; }
 
         /* Middle column: items 4-7, starting from row 1 but with offset */
-        .metadata-wrapper:nth-child(4) { grid-column: 2; grid-row: 1; margin-top: 50px; }
+        .metadata-wrapper:nth-child(4) { grid-column: 2; grid-row: 1; }
         .metadata-wrapper:nth-child(5) { grid-column: 2; grid-row: 2; }
         .metadata-wrapper:nth-child(6) { grid-column: 2; grid-row: 3; }
-        .metadata-wrapper:nth-child(7) { grid-column: 2; grid-row: 4; margin-bottom: 50px; }
+        .metadata-wrapper:nth-child(7) { grid-column: 2; grid-row: 4; }
 
         /* Last column: items 8-10 */
         .metadata-wrapper:nth-child(8) { grid-column: 3; grid-row: 1; }
@@ -362,6 +362,40 @@
                 width: 100%;
             }
         }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .analytics-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .analytics-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .analytics-card h3 {
+            margin-top: 0;
+            font-size: 1.1em;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+        }
+
+        .analytics-card p {
+            margin: 10px 0 0 0;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -375,7 +409,7 @@
         <!-- Data Visualization Section -->
         <div class="section">
             <h2 class="section-title">Heart Disease Data Analysis</h2>
-
+            <!-- Meta Data -->
             <section class="metadata-container">
                 <div class="metadata-wrapper">
                     <p id="csvSize">Loading...</p>
@@ -409,6 +443,48 @@
                 </div>
             </section>
 
+            <!-- Analytics -->
+            <section>
+                <h2>Analytics Insights</h2>
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3>1. Heart Disease Prevalence</h3>
+                        <p id="analytics-1">loading...</p>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>2. High Blood Pressure</h3>
+                        <p id="analytics-2">loading...</p>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>3. Preventive Care Engagement</h3>
+                        <p id="analytics-3">loading...</p>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>4. BMI Analysis</h3>
+                        <p id="analytics-4">loading...</p>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>5. Smoking Prevalence</h3>
+                        <p id="analytics-5">loading...</p>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>6. Physical Activity</h3>
+                        <p id="analytics-6">loading...</p>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>7. Healthcare Coverage</h3>
+                        <p id="analytics-7">loading...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Visualizations -->
             <div class="viz-container">
                 <div class="viz-grid">
                     <div class="chart-wrapper">

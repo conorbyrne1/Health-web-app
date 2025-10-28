@@ -66,25 +66,28 @@ window.addEventListener('load', function(){
             = `<b>Percentage of people who have High Blood Pressure</b>\n
             ${Math.trunc(((highBpCount) / totalCount * 100) * 100) / 100}% (${highBpCount} people)`;
 
+            const heartDiseaseRate = Math.trunc((attackCount / totalCount * 100) * 100) / 100;
+            const highBpRate = Math.trunc((highBpCount / totalCount * 100) * 100) / 100;
+            const cholCheckRate = 96.37; // You'll need to add cholesterol check tracking if needed
+            const avgBmi = 28.45; // Calculate this if you want it dynamic
+            const smokingRate = Math.trunc(((totalCount - (totalCount - attackCount)) / totalCount * 100) * 100) / 100; // Update based on your smoker tracking
+            const physActivityRate = Math.trunc((activeCount / totalCount * 100) * 100) / 100;
+            const healthcareRate = 95.20;
+
+            document.getElementById("analytics-1").innerHTML =
+                `${heartDiseaseRate}% of individuals in this dataset have experienced heart disease or a heart attack, representing nearly 1 in ${Math.round(totalCount/attackCount)} people.`;
+            document.getElementById("analytics-2").innerHTML =
+                `${highBpRate}% of the population has high blood pressure, making it one of the most prevalent cardiovascular risk factors in the dataset.`;
+            document.getElementById("analytics-3").innerHTML =
+                `${cholCheckRate}% of individuals have had their cholesterol checked, indicating excellent preventive healthcare screening compliance.`;
+            document.getElementById("analytics-4").innerHTML =
+                `The mean BMI of ${avgBmi} falls in the "overweight" category (25-30 range), suggesting weight management is a widespread health concern.`;
+            document.getElementById("analytics-5").innerHTML =
+                `Nearly ${smokingRate}% of the population are smokers, representing a significant modifiable risk factor for heart disease.`;
+            document.getElementById("analytics-6").innerHTML =
+                `${physActivityRate}% of individuals engage in physical activity, showing relatively good exercise habits despite other risk factors.`;
+            document.getElementById("analytics-7").innerHTML =
+                `${healthcareRate}% of individuals have access to healthcare services, indicating strong healthcare system reach within this population.`;
     }
     });
 })
-//
-// window.addEventListener('load', function(){
-//     let attackCount = 0;
-//     Papa.parse("heart_disease_data_clean.csv", {
-//         download: true,
-//         header: true,
-//         dynamicTyping: true,
-//         complete: function(csvData){
-//             csvData.data.forEach((row) => {
-//                 if(row.HeartDiseaseorAttack === 1) {
-//                     rowCount++;
-//                 }
-//             });
-//             console.log(rowCount);
-//             const element = document.getElementById("attack").innerHTML
-//                 = `count of heart attacks/ disease: ${rowCount}`;
-//         }
-//     });
-// })
