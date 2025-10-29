@@ -508,6 +508,20 @@
                         <canvas id="ageChart"></canvas>
                     </div>
                 </div>
+
+                <div class="chart-wrapper" style="margin-top: 30px;">
+                    <div class="chart-title">Average Income by Age Category</div>
+                    <div class="chart-container bar">
+                        <canvas id="ageIncomeChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-wrapper" style="margin-top: 30px;">
+                    <div class="chart-title">Heart Issues by Gender</div>
+                    <div class="chart-container">
+                        <canvas id="genderChart"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -785,6 +799,15 @@
         age: {
             labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'],
             values: [9, 28, 50, 110, 260, 633, 1222, 1976, 2493, 2543, 2049, 1216, 232]
+        },
+        ageIncome: {
+            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'],
+            values: [5.4, 6.0, 6.3, 6.5, 6.65, 6.58, 6.37, 6.28, 6.14, 6.01, 5.78, 5.49, 5.186]
+        },
+        gender: {
+            labels: ['Males without heart issues', 'Males with heart issues', 'Females without heart issues', 'Females with heart issues'],
+            values: [48940, 6755, 66074, 5070],
+            colors: ['#add8e6', '#4682b4', '#ff6347', '#cd5c5c']
         }
     };
 
@@ -913,6 +936,115 @@
                         callbacks: {
                             label: function(context) {
                                 return `Cases: ${context.parsed.y}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // NEW: Age & Income Chart
+        const ageIncomeCtx = document.getElementById('ageIncomeChart').getContext('2d');
+        new Chart(ageIncomeCtx, {
+            type: 'line',
+            data: {
+                labels: heartDiseaseData.ageIncome.labels,
+                datasets: [{
+                    label: 'Average Income',
+                    data: heartDiseaseData.ageIncome.values,
+                    backgroundColor: 'rgba(102, 126, 234, 0.2)',
+                    borderColor: '#667eea',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#764ba2',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 10,
+                        title: {
+                            display: true,
+                            text: 'Income Group',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        ticks: {
+                            font: { size: 12 }
+                        },
+                        grid: {
+                            color: '#e0e0e0'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Age Group',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        ticks: {
+                            font: { size: 12 }
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Income Group: ${context.parsed.y.toFixed(1)}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // NEW: Gender Distribution Chart
+        const genderCtx = document.getElementById('genderChart').getContext('2d');
+        new Chart(genderCtx, {
+            type: 'pie',
+            data: {
+                labels: heartDiseaseData.gender.labels,
+                datasets: [{
+                    data: heartDiseaseData.gender.values,
+                    backgroundColor: heartDiseaseData.gender.colors,
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: { size: 12 }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.parsed;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = ((value / total) * 100).toFixed(1);
+                                return `${label}: ${value.toLocaleString()} (${percentage}%)`;
                             }
                         }
                     }
